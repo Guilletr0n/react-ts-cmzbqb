@@ -86,10 +86,10 @@ const CheckboxGroup: React.FC = () => {
     console.log(value);
   }
   const handleWidthRangeChange = (value) => {
-    setPreviewOptions({width:(value*3)})
+    setPreviewOptions({width:(value)})
   }
   const handleHeightRangeChange = (value) => {
-    setPreviewOptions({height:(value*5)})
+    setPreviewOptions({height:(value)})
   }
   return (
     <div className="container">

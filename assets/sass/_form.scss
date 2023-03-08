@@ -30,6 +30,11 @@ label {
 
 label:has(input[type='radio']) {
   font-weight: normal;
+  border-radius: 3px;
+  padding: 3px;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 label:has(input:checked) {
   font-size: 0.75rem;
@@ -37,8 +42,6 @@ label:has(input:checked) {
   text-decoration: underline;
   background-color: #add;
   color: #336;
-  padding: 3px;
-  border-radius: 3px;
 }
 
 input[type='radio'] {
@@ -50,7 +53,6 @@ input[type='number'] {
   max-width: 5ch;
   background-color: rgba(0,0,0,0.25);
   color: #ccc;
-  border: none;
   box-sizing: border-box;
   border:1px solid transparent;
   &:focus {
