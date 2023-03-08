@@ -9,7 +9,8 @@ interface InputProps {
 
 const InputNumber: React.FC<InputProps> = (props) => {
   return (
-    <div>
+    <div className="InputNumberComp">
+      <label htmlFor={props.name}>{props.name}</label>
       <input
         value={props.value}
         name={props.name}
@@ -17,7 +18,6 @@ const InputNumber: React.FC<InputProps> = (props) => {
         step={props.step}
         onInput={(e) => props.onInput(e.currentTarget.value)}
       />
-      <label htmlFor={props.name}>{props.name}</label>
     </div>
   );
 };

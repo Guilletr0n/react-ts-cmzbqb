@@ -7,6 +7,8 @@ $sizeL: 100px;
 $sizeS: 75px;
 $sizeXS: 30px; 
 
+$primary-color: #6e9e9e;
+
 body { 
   padding: 0;
   margin: 0;
@@ -41,19 +43,37 @@ body {
   }
 }
 .control-panel {
-  padding: 2rem;
+  position: relative;
+  margin: 2rem;
+  padding: 0 2rem;
   max-height: 100vh;
   overflow: scroll;
 }
 
 .fold-area {
-  padding: 0 0 0 1rem;
+  position: relative;
+  padding: 0;
+  margin-bottom: 0.5rem; 
   max-height: 0;
   display: block;
   overflow: clip;
-  transition: max-height 1.25s ease-in-out;
+  transition: max-height .5s ease-in-out;
   &.is-folded {
     max-height: 100%;
+  }
+}
+
+.foldable--indicator {
+  display: block;
+  position: absolute;
+  left: 10px;
+  transition: transform 0.125s;
+  font-size: 13px;
+  &.is-closed {
+    transform: rotateZ(0);
+  }
+  &.is-open {
+    transform: rotateZ(90deg);
   }
 }
 

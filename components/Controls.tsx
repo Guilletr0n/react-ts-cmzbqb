@@ -101,117 +101,8 @@ const CheckboxGroup: React.FC = () => {
           <label>Height</label>
           <input type='range' onChange={(e)=>handleHeightRangeChange(e.currentTarget.value)}/>
         </Foldable>
-        <Foldable title="Alignment">
-          
-          <RadioGroup
-            title='Text Align'
-            options={[
-              {'value':'right', 'name':'text-align', checked:true, onClick:() => handleInput('textAlign', 'right')},
-              {'value':'center', 'name':'text-align', onClick:() => handleInput('textAlign', 'center')},
-              {'value':'left', 'name':'text-align', onClick:() => handleInput('textAlign', 'left')},
-              {'value':'justify', 'name':'text-align', onClick:() => handleInput('textAlign', 'justify')}
-            ]}
-          />
-          <label>Text Align Last</label>
-
-          <RadioGroup
-            title='Text Justify'
-            options={[
-              {'value':'auto', 'name':'text-justify',  onClick:() => handleInput('textJustify', 'auto')},
-              {'value':'inter-word', 'name':'text-justify', onClick:() => handleInput('textJustify', 'inter-word')},
-              {'value':'inter-character', 'name':'text-justify', onClick:() => handleInput('textJustify', 'inter-character')}
-            ]}
-          />
-          
-        </Foldable>
-
-        <Foldable title="Hyphenation">
-        <RadioGroup
-            title='Text-overflow'
-            options={[
-              {'value':'auto', 'name':'text-overflow', 'checked':true, onClick:() => handleInput('TextOverflow', 'auto')},
-              {'value':'manual', 'name':'text-overflow', onClick:() => handleInput('TextOverflow', 'manual')},
-              {'value':'none', 'name':'text-overflow', onClick:() => handleInput('TextOverflow', 'none')}
-            ]}
-          />
-          <InputNumber
-            value={cssAll['textOverflow']}
-            name="text-overflow"
-            onInput={(value) => handleInput('textOverflow', parseInt(value))}
-          />
-         
-         <RadioGroup
-            title='white-space'
-            options={[
-              {'value':'normal', 'name':'text-overflow', 'checked':true, onClick:() => handleInput('TextOverflow', 'auto')},
-              {'value':'nowrap', 'name':'text-overflow', onClick:() => handleInput('TextOverflow', 'no-wrap')},
-              {'value':'pre-line', 'name':'text-overflow', onClick:() => handleInput('TextOverflow', 'pre-line')},
-              {'value':'pre-wrap', 'name':'text-overflow', onClick:() => handleInput('TextOverflow', 'pre-wrap')},
-            ]}
-          />
-
-          <SelectInput
-            selected={cssAll['whiteSpace']}
-            values={['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap']}
-            onInput={(value) => handleInput('whiteSpace', value)}
-          />
-          <p>Word Break</p>
-          <SelectInput
-            selected={cssAll['wordBreak']}
-            values={['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap']}
-            onInput={(value) => handleInput('wordBreak', value)}
-          />
-          <p>Word Spacing</p>
-          <InputNumber
-            value={cssAll['wordSpacing']}
-            name="word-spacing"
-            onInput={(value) => handleInput('wordSpacing', parseInt(value))}
-          />
-          <p>Word Wrap</p>
-          <SelectInput
-            selected="normal"
-            values={['normal', 'break-word']}
-            onInput={(value) => handleInput('wordBreak', value)}
-          />
-          <p>Widows</p>
-          <InputNumber
-            value={cssAll['widows']}
-            name="widows"
-            onInput={(value) => handleInput('widows', parseInt(value))}
-          />
-          <p>Orphans</p>
-          <InputNumber
-            value={cssAll['orphans']}
-            name="orphans"
-            onInput={(value) => handleInput('orphans', parseInt(value))}
-          />
-        </Foldable>
-
-        <Foldable title="Decoration">
-          <p>Text Horizontal Shadow</p>
-          <InputNumber
-            value={cssAll['textDecorationThickness']}
-            name="text-decoration-thickness"
-            onInput={(value) => handleInput('textDecorationThickness', parseInt(value))}
-          />
-          <p>Text Shadow</p>
-          <TextInput
-            value={cssAll['textShadow']}
-            name="text-shadow"
-            onChange={(value) => handleStringInput('textShadow', value)}
-          />
-          <p>Text Decoration Line</p>
-          <SelectInput
-            selected={cssAll['textDecorationLine']}
-            values={['none', 'underline', 'overline', 'line-through']}
-            onInput={(value) => handleInput('textDecorationLine', value)}
-          />
-        </Foldable>
-
+        
         <Foldable title="Size">
-          <p>
-            Value:{selected} {cssAll['fontSize']} {cssAll['textAlign']}
-          </p>
           <InputNumber
             value={cssAll['fontSize']}
             name="font-size"
@@ -264,6 +155,117 @@ const CheckboxGroup: React.FC = () => {
           />
         </Foldable>
 
+        <Foldable title="Alignment">
+          
+          <RadioGroup
+            title='Text Align'
+            options={[
+              {'value':'left', 'name':'text-align', checked:true, onClick:() => handleInput('textAlign', 'left')},
+              {'value':'center', 'name':'text-align', onClick:() => handleInput('textAlign', 'center')},
+              {'value':'right', 'name':'text-align', onClick:() => handleInput('textAlign', 'right')},
+              {'value':'justify', 'name':'text-align', onClick:() => handleInput('textAlign', 'justify')}
+            ]}
+          />
+          
+          <RadioGroup
+            title='Text Align Last'
+            options={[
+              {'value':'left', 'name':'text-align-last', 'checked': true, onClick:() => handleInput('textAlignLast', 'left')},
+              {'value':'center', 'name':'text-align-last', onClick:() => handleInput('textAlignLast', 'center')},
+              {'value':'right', 'name':'text-align-last', onClick:() => handleInput('textAlignLast', 'right')}
+            ]}
+          />
+
+          <RadioGroup
+            title='Text Justify'
+            options={[
+              {'value':'auto', 'name':'text-justify', 'checked': true, onClick:() => handleInput('textJustify', 'auto')},
+              {'value':'inter-word', 'name':'text-justify', onClick:() => handleInput('textJustify', 'inter-word')},
+              {'value':'inter-character', 'name':'text-justify', onClick:() => handleInput('textJustify', 'inter-character')}
+            ]}
+          />
+          
+        </Foldable>
+
+        
+
+        <Foldable title="Hyphenation">
+        <RadioGroup
+            title='Text-overflow'
+            options={[
+              {'value':'auto', 'name':'text-overflow', 'checked': true, onClick:() => handleInput('TextOverflow', 'auto')},
+              {'value':'manual', 'name':'text-overflow', onClick:() => handleInput('TextOverflow', 'manual')},
+              {'value':'none', 'name':'text-overflow', onClick:() => handleInput('TextOverflow', 'none')}
+            ]}
+          />
+          <InputNumber
+            value={cssAll['textOverflow']}
+            name="text-overflow"
+            onInput={(value) => handleInput('textOverflow', parseInt(value))}
+          />
+         
+         <RadioGroup
+            title='white-space'
+            options={[
+              {'value':'normal', 'name':'white-space', 'checked':true, onClick:() => handleInput('whiteSpace', 'auto')},
+              {'value':'nowrap', 'name':'white-space', onClick:() => handleInput('whiteSpace', 'no-wrap')},
+              {'value':'pre-line', 'name':'white-space', onClick:() => handleInput('whiteSpace', 'pre-line')},
+              {'value':'pre-wrap', 'name':'white-space', onClick:() => handleInput('whiteSpace', 'pre-wrap')},
+            ]}
+          />
+          <RadioGroup
+            title='word-break'
+            options={[
+              {'value':'normal', 'name':'word-break', 'checked': true, onClick:() => handleInput('wordBreak','normal')},
+              {'value':'nowrap', 'name':'word-break', onClick:() => handleInput('wordBreak','nowrap')},
+              {'value':'pre', 'name':'word-break', onClick:() => handleInput('wordBreak','pre')},
+              {'value':'pre-line', 'name':'word-break', onClick:() => handleInput('wordBreak','pre-line')},
+              {'value':'pre-wrap', 'name':'word-break', onClick:() => handleInput('wordBreak','pre-wrap')},
+            ]}
+          />
+          
+          <InputNumber
+            value={cssAll['wordSpacing']}
+            name="word-spacing"
+            onInput={(value) => handleInput('wordSpacing', parseInt(value))}
+          />
+          <RadioGroup
+            title='word-Wrap'
+            options={[
+              {'value':'normal', 'name':'word-wrap', onClick:() => handleInput('wordWrap','normal')},
+              {'value':'break-word', 'name':'word-wrap', onClick:() => handleInput('wordWrap','break-word')}
+            ]}
+          />
+          <InputNumber
+            value={cssAll['widows']}
+            name="widows"
+            onInput={(value) => handleInput('widows', parseInt(value))}
+          />
+          <InputNumber
+            value={cssAll['orphans']}
+            name="orphans"
+            onInput={(value) => handleInput('orphans', parseInt(value))}
+          />
+        </Foldable>
+
+        <Foldable title="Decoration">
+          <InputNumber
+            value={cssAll['textDecorationThickness']}
+            name="text-decoration-thickness"
+            onInput={(value) => handleInput('textDecorationThickness', parseInt(value))}
+          />
+          <TextInput
+            value={cssAll['textShadow']}
+            name="text-shadow"
+            onChange={(value) => handleStringInput('textShadow', value)}
+          />
+          <SelectInput
+            selected={cssAll['textDecorationLine']}
+            values={['none', 'underline', 'overline', 'line-through']}
+            onInput={(value) => handleInput('textDecorationLine', value)}
+          />
+        </Foldable>
+
         <Foldable title="Font">
           <p>Family</p>
           <SelectInput
@@ -285,7 +287,6 @@ const CheckboxGroup: React.FC = () => {
           />
         </Foldable>
 
-        <p>Text Transform</p>
         <SelectInput
           selected={cssAll['textTransform']}
           values={['uppercase', 'lowercase', 'capitalize', 'none']}

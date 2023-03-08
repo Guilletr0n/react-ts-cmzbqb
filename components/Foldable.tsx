@@ -14,6 +14,7 @@ export default function Foldable(props:FoldedContent) {
   }
   return (
     <React.Fragment>
+      <span className={isfolded ? 'foldable--indicator is-open':'foldable--indicator is-closed'}>❯</span>
       <h5 className="interactive" onClick={handleClick}>{props.title}</h5>
       <div className={isfolded ? 'fold-area is-folded':'fold-area'}>
         { props.children }
