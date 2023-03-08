@@ -23,14 +23,17 @@ interface TextInputProps {
   onChange: (value: string) => void;
 }
 
+const defaultPreview = {
+  fontSize: 22,
+  marginTop: '18px',
+  lineHeight: 1.5,
+  textShadow: '2px 2px 2px #ddd',
+  hyphens: 'auto',
+  textAlign: 'left',
+}
+
 const cssAll: { [key: string]: TextCSSProperties } = {
-  paragraphStyles: {
-    fontSize: 16,
-    textAlign: 'right',
-    marginTop: 18,
-    lineHeight: 1.5,
-    textShadow: '3px 3px 3px #add'
-  },
+  paragraphStyles: defaultPreview
 };
 
 const selectStyles = {
@@ -60,7 +63,7 @@ const previewOptions = {
 const CheckboxGroup: React.FC = () => {
   const [selected, setSelected] = useState<string | null>(null);
   const [value, setValue] = useState<string | number>(16);
-  const [cssAll, setCSSAll] = useState<TextCSSProperties>({ fontSize: 16 });
+  const [cssAll, setCSSAll] = useState<TextCSSProperties>( defaultPreview );
   const [previewOptions, setPreviewOptions] = useState<containerProps>({width:300, height: 500})
   const handleInput = (property: string, value: string) => {
     let newCSS: TextCSSProperties = { ...cssAll };
@@ -119,14 +122,18 @@ const CheckboxGroup: React.FC = () => {
           <InputNumber
             value={Math.round(cssAll['lineHeight'] * 10)}
             name="line-height"
-            onInput={(value) =>
-              handleNumberInput('lineHeight', parseInt(value), 0.1)
+            onInput={(value) => handleNumberInput('lineHeight', parseInt(value), 0.1)
             }
           />
           <InputNumber
             value={cssAll['letterSpacing']}
             name="letter-spacing"
             onInput={(value) => handleInput('letterSpacing', parseInt(value))}
+          />
+          <InputNumber
+            value={cssAll['wordSpacing']}
+            name="word-spacing"
+            onInput={(value) => handleInput('wordSpacing', parseInt(value))}
           />
           <InputNumber
             value={cssAll['lineheight']}
@@ -187,9 +194,17 @@ const CheckboxGroup: React.FC = () => {
           
         </Foldable>
 
-        
-
         <Foldable title="Hyphenation">
+          <RadioGroup
+            title="overflow"
+            options={[
+              {'value':'visible', 'name':'overflow', onClick:() => handleInput('overflow', 'visible')},
+              {'value':'hidden', 'name':'overflow', 'checked': true, onClick:() => handleInput('overflow', 'hidden')},
+              {'value':'clip', 'name':'overflow', onClick:() => handleInput('overflow', 'clip')},
+              {'value':'scroll', 'name':'overflow', onClick:() => handleInput('overflow', 'scroll')},
+              {'value':'auto', 'name':'overflow', onClick:() => handleInput('overflow', 'auto')}
+            ]}
+          />
         <RadioGroup
             title='Text-overflow'
             options={[
@@ -203,7 +218,13 @@ const CheckboxGroup: React.FC = () => {
             name="text-overflow"
             onInput={(value) => handleInput('textOverflow', parseInt(value))}
           />
-         
+         <RadioGroup
+           title="hyphens"
+           options={[
+             {'value':'auto', 'name':'hyphens', 'checked': true, onClick:() => handleInput('hyphens', 'auto')},
+             {'value':'none', 'name':'hyphens', onClick:() => handleInput('hyphens', 'none')},
+             {'value':'manual', 'name':'hyphens', onClick:() => handleInput('hyphens', 'manual')}
+           ]}/>
          <RadioGroup
             title='white-space'
             options={[
@@ -217,17 +238,10 @@ const CheckboxGroup: React.FC = () => {
             title='word-break'
             options={[
               {'value':'normal', 'name':'word-break', 'checked': true, onClick:() => handleInput('wordBreak','normal')},
-              {'value':'nowrap', 'name':'word-break', onClick:() => handleInput('wordBreak','nowrap')},
-              {'value':'pre', 'name':'word-break', onClick:() => handleInput('wordBreak','pre')},
-              {'value':'pre-line', 'name':'word-break', onClick:() => handleInput('wordBreak','pre-line')},
-              {'value':'pre-wrap', 'name':'word-break', onClick:() => handleInput('wordBreak','pre-wrap')},
+              {'value':'break-all', 'name':'word-break', onClick:() => handleInput('wordBreak','break-all')},
+              {'value':'keep-all', 'name':'word-break', onClick:() => handleInput('wordBreak','keep-all')},
+              {'value':'break-word', 'name':'word-break', onClick:() => handleInput('wordBreak','break-word')}
             ]}
-          />
-          
-          <InputNumber
-            value={cssAll['wordSpacing']}
-            name="word-spacing"
-            onInput={(value) => handleInput('wordSpacing', parseInt(value))}
           />
           <RadioGroup
             title='word-Wrap'
@@ -254,6 +268,14 @@ const CheckboxGroup: React.FC = () => {
             name="text-decoration-thickness"
             onInput={(value) => handleInput('textDecorationThickness', parseInt(value))}
           />
+          <RadioGroup
+            title="text-decoration-line"
+            options={[
+              {'name':'text-decoration-line', 'value':'none', onClick:()=> handleInput('text-decoration-line','none')},
+              {'name':'text-decoration-line', 'value':'underline', onClick:()=> handleInput('text-decoration-line','underline')},
+              {'name':'text-decoration-line', 'value':'overline', onClick:()=> handleInput('text-decoration-line','overline')},
+              {'name':'text-decoration-line', 'value':'line-through', onClick:()=> handleInput('text-decoration-line','line-through')}
+            ]}/>
           <TextInput
             value={cssAll['textShadow']}
             name="text-shadow"

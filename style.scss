@@ -28,10 +28,14 @@ body {
   padding: 2rem;
 }
 .preview-wrap {
-  background-color: #bbb;
+  background-color: rgb(194, 193, 193);
   color: #333;
 }
-
+[contenteditable]:focus {
+  outline: 1px solid transparent;
+  background-color: rgba(225, 255, 255, .25);
+  color: #666;
+}
 .interactive {
   cursor: pointer;
 }
@@ -49,7 +53,20 @@ body {
   max-height: 100vh;
   overflow: scroll;
 }
-
+.interactive {
+  &:before {
+    content: "❯";
+    display: inline-block;
+    position: relative;
+    margin-right: 6px;
+    transition: transform 0.125s;
+  }
+  &.is-open {
+    &:before {
+      transform: rotateZ(90deg)
+    }
+  }
+}
 .fold-area {
   position: relative;
   padding: 0;

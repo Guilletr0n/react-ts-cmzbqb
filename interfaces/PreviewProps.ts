@@ -20,7 +20,12 @@ export enum CSSHyphen {
 }
 
 export interface TextCSSProperties extends React.CSSProperties {
-  textShadow: string
+  textShadow: string,
+  fontSize: string,
+  textAlign: string,
+  marginTop: string,
+  lineHeight: number,
+  hyphens: string
 }
 
 export interface containerProps {
