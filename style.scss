@@ -1,0 +1,79 @@
+@import "assets/sass/form";
+@import "assets/sass/typography";
+@import "assets/sass/radio-group";
+
+$sizeXL: 200px;
+$sizeL: 100px;
+$sizeS: 75px;
+$sizeXS: 30px; 
+
+body { 
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif; 
+}
+
+.app-title {
+  text-align: center;
+  font-weight: 400;
+  padding-bottom: 1.125rem;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.5)
+}
+
+.preview-panel {
+  background-color: #ccc;
+  background-image: url('assets/img/noise.svg');
+  padding: 2rem;
+}
+.preview-wrap {
+  background-color: #bbb;
+  color: #333;
+}
+
+.interactive {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  .preview-panel {
+    width: 50%;
+  }
+}
+.control-panel {
+  padding: 2rem;
+  max-height: 100vh;
+  overflow: scroll;
+}
+
+.fold-area {
+  padding: 0 0 0 1rem;
+  max-height: 0;
+  display: block;
+  overflow: clip;
+  transition: max-height 1.25s ease-in-out;
+  &.is-folded {
+    max-height: 100%;
+  }
+}
+
+.layout-horizontal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 1rem 1rem 0;
+}
+
+.w-xl{
+  max-width: $sizeXL
+}
+.w-l{
+  max-width: $sizeXL
+}
+.w-s{
+  max-width: $sizeXL
+}
+.w-xs{
+  max-width: $sizeXL
+}
