@@ -2,7 +2,8 @@ import { CSSProperties } from 'react';
 
 export interface ParagraphProps {
   previewStyle:TextCSSProperties;
-  containerOptions: containerProps;
+  containerOptions: ContainerProps;
+  content: PreviewContent;
 }
 
 export interface CSSHyphenValues {
@@ -28,7 +29,11 @@ export interface TextCSSProperties extends React.CSSProperties {
   hyphens: string
 }
 
-export interface containerProps {
+export interface ContainerProps {
   width: number;
   height: number
+}
+
+export interface PreviewContent {
+  rawContent: string
 }

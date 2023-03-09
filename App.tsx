@@ -1,12 +1,13 @@
 import * as React from 'react';
+import './assets/css/fonts.css';
 import './style.scss';
 import Control from './components/Controls'
 
 export default function App() {
   return (
-    <div>
-      <h1 class="app-title">CSS Text Playground</h1>
+    <React.Fragment>
+      <h1 className="app-title"><span class="first-letter">C</span><span>S<em className="last-letter">S</em></span> Text Properties Playground</h1>
       <Control />
-    </div>
+    </React.Fragment>
   );
 }

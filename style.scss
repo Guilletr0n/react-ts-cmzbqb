@@ -1,58 +1,89 @@
-@import "assets/sass/form";
+@import 'assets/sass/variables';
 @import "assets/sass/typography";
+@import "assets/sass/form";
 @import "assets/sass/radio-group";
 
-$sizeXL: 200px;
-$sizeL: 100px;
-$sizeS: 75px;
-$sizeXS: 30px; 
-
-$primary-color: #6e9e9e;
-
 body { 
+  height: 100vh;
   padding: 0;
   margin: 0;
-  font-family: sans-serif; 
+  font-family: 'Rubik', sans-serif;
+  background-color: $light-background-color;
 }
-
+#root {
+  height: 100%;
+}
+.container {
+  display: flex;
+  height: 100%;
+}
 .app-title {
-  text-align: center;
+  background-color: $gunmetal-light;
+  color: $gunmetal;
+  text-align: left;
+  font-size: 1.25rem;
+  letter-spacing: 0.8x;
+  word-spacing: 3px;
+  padding: 1.5rem 0 0 2rem;
   font-weight: 400;
   padding-bottom: 1.125rem;
-  box-shadow: 0 5px 5px rgba(0,0,0,0.5)
+  box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+  
+  span {
+    animation: color_change 1s;
+    animation-iteration-count: 5;
+    font-weight: 700;
+    animation-delay: 0.33s;
+    .last-letter {
+      font-weight: 700;
+      font-style: normal;
+      animation: color_change 1s;
+      animation-delay: 0.66s;
+      animation-iteration-count: 5;
+    }
+  }
+  .first-letter {
+    font-weight: 700;
+    animation: color_change 1s ;
+    animation-iteration-count: 5;
+  }
 }
 
 .preview-panel {
-  background-color: #ccc;
-  background-image: url('assets/img/noise.svg');
+  width: 100%;
   padding: 2rem;
+  display: flex;
+  justify-content: center;
+
+  .preview-wrap {
+    filter: brightness(92%);
+    color: #333;
+    .preview {
+      font-family: 'Merriweather', serif;
+      &:focus {
+        background-color: $light-background-color;
+      }
+    }
+  }
 }
-.preview-wrap {
-  background-color: rgb(194, 193, 193);
-  color: #333;
-}
+
 [contenteditable]:focus {
   outline: 1px solid transparent;
   background-color: rgba(225, 255, 255, .25);
   color: #666;
 }
+
 .interactive {
   cursor: pointer;
 }
 
-.container {
-  display: flex;
-  .preview-panel {
-    width: 50%;
-  }
-}
 .control-panel {
   position: relative;
-  margin: 2rem;
+  margin: 1rem 0;
   padding: 0 2rem;
-  max-height: 100vh;
-  overflow: scroll;
+  overflow: auto;
 }
+
 .interactive {
   &:before {
     content: "❯";
@@ -67,6 +98,7 @@ body {
     }
   }
 }
+
 .fold-area {
   position: relative;
   padding: 0;
@@ -75,7 +107,7 @@ body {
   display: block;
   overflow: clip;
   transition: max-height .5s ease-in-out;
-  &.is-folded {
+  &.is-open {
     max-height: 100%;
   }
 }
@@ -102,15 +134,26 @@ body {
   margin: 0 1rem 1rem 0;
 }
 
-.w-xl{
-  max-width: $sizeXL
+::-webkit-scrollbar {
+  background-color: #b2a477;
+  width: 6px;
+  height: 6px;
+  &:focus,
+  &:hover {
+    width: 12px;
+  }
 }
-.w-l{
-  max-width: $sizeXL
+
+::-webkit-scrollbar-thumb {
+  background-color: $light-primary-color;
 }
-.w-s{
-  max-width: $sizeXL
+
+::-webkit-scrollbar-track {
+  width: 6px;
 }
-.w-xs{
-  max-width: $sizeXL
+
+@keyframes color_change {
+  0%  { color: $rufous}
+  50% { color: $hunyadi-yellow}
+  100% { color: $gunmetal-light}
 }
