@@ -26,7 +26,8 @@ export interface TextCSSProperties extends React.CSSProperties {
   textAlign: string,
   marginTop: string,
   lineHeight: number,
-  hyphens: string
+  hyphens: string,
+  columnWidth: string
 }
 
 export interface ContainerProps {

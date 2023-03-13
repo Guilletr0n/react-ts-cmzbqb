@@ -7,8 +7,8 @@ body {
   height: 100vh;
   padding: 0;
   margin: 0;
-  font-family: 'Rubik', sans-serif;
-  background-color: $light-background-color;
+  font-family: 'Mulish', sans-serif;
+  background-color: #fdffff
 }
 #root {
   height: 100%;
@@ -18,24 +18,22 @@ body {
   height: 100%;
 }
 .app-title {
-  background-color: $gunmetal-light;
-  color: $gunmetal;
+  color: $gunmetal-light;
   text-align: left;
   font-size: 1.25rem;
   letter-spacing: 0.8x;
   word-spacing: 3px;
   padding: 1.5rem 0 0 2rem;
-  font-weight: 400;
+  font-weight: 600;
   padding-bottom: 1.125rem;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.25);
   
   span {
     animation: color_change 1s;
     animation-iteration-count: 5;
-    font-weight: 700;
+    font-weight: 600;
     animation-delay: 0.33s;
     .last-letter {
-      font-weight: 700;
+      font-weight: 600;
       font-style: normal;
       animation: color_change 1s;
       animation-delay: 0.66s;
@@ -43,7 +41,7 @@ body {
     }
   }
   .first-letter {
-    font-weight: 700;
+    font-weight: 600;
     animation: color_change 1s ;
     animation-iteration-count: 5;
   }
@@ -56,13 +54,18 @@ body {
   justify-content: center;
 
   .preview-wrap {
-    filter: brightness(92%);
-    color: #333;
+    
+    color: $preview-font-color;
     .preview {
+      height: 100%;
       font-family: 'Merriweather', serif;
+      background-color: $preview-backgroud-color;
       &:focus {
-        background-color: $light-background-color;
+        background-color: $preview-focus-backgroud-color;
       }
+    }
+    &:hover {
+      filter: brightness(96%);
     }
   }
 }
@@ -82,6 +85,7 @@ body {
   margin: 1rem 0;
   padding: 0 2rem;
   overflow: auto;
+  flex-shrink: 0.4;
 }
 
 .interactive {
@@ -109,6 +113,9 @@ body {
   transition: max-height .5s ease-in-out;
   &.is-open {
     max-height: 100%;
+    background-color: #fafafa;
+    border-radius: 2px;
+    padding: 10px;
   }
 }
 

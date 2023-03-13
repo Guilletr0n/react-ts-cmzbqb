@@ -1,5 +1,5 @@
 .radio-group {
-  border-bottom: 1px inset rgba(0,0,0,0.5);
+  
   margin-bottom: 1rem;
   .radio-group--title {
     text-transform: capitalize;
@@ -7,4 +7,13 @@
     padding: 0;
     font-weight: 500;
   }
+}
+.fold-area {
+  >div {
+    border-bottom: 1px inset rgba(0,0,0,0.5);
+  }
+  >div:last-child {
+    border: none;
+  }
+  
 }

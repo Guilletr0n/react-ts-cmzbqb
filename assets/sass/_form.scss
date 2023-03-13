@@ -29,7 +29,7 @@ label {
 }
 
 label:has(input[type='radio']) {
-  font-weight: 300;
+  font-weight: 400;
   border-radius: 3px;
   padding: 3px;
   &:hover {
@@ -55,9 +55,11 @@ input[type='radio'] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+
   label {
-    font-weight: 300;
+    font-weight: 4 00;
     min-width: 40%;
   }
   input[type='number'] {
@@ -66,12 +68,14 @@ input[type='radio'] {
     font-weight: 500;
     padding: 5px;
     max-width: 7ch;
-    background: linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.15) 100%);
+    border-radius: 4px;
     color: $light-primary-color;
     box-sizing: border-box;
-    border:1px solid rgba(1, 1, 1, 0.125);
+    border-bottom: 2px solid #666;
+    margin-bottom:3px;
     &:focus {
-      border:1px solid rgba(0,0,0,0.5);
+      border-bottom: 4px solid black;
+      margin-bottom: 1px;
     }
     outline: #888;
   }
@@ -84,6 +88,7 @@ input[type=range] {
   height: 6px;
   background: rgba(0,0,0,0.25);
   box-shadow: 0 1px 1px rgba(0,0,0,0.2) inset;
+  margin-bottom: 20px;
   &:focus {
     &::-webkit-slider-thumb {
       box-shadow: none;
