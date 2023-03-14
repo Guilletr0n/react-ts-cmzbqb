@@ -381,15 +381,20 @@ const CheckboxGroup: React.FC = () => {
             title="white-space"
             options={[
               {
-                value: 'normal',
+                value: 'break-spaces',
                 name: 'white-space',
                 checked: true,
-                onClick: () => handleInput('whiteSpace', 'auto'),
+                onClick: () => handleInput('whiteSpace', 'break-spaces'),
               },
               {
                 value: 'nowrap',
                 name: 'white-space',
-                onClick: () => handleInput('whiteSpace', 'no-wrap'),
+                onClick: () => handleInput('whiteSpace', 'nowrap'),
+              },
+              {
+                value: 'pre',
+                name: 'white-space',
+                onClick: () => handleInput('whiteSpace', 'pre'),
               },
               {
                 value: 'pre-line',
