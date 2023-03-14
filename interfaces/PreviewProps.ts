@@ -4,6 +4,8 @@ export interface ParagraphProps {
   previewStyle:TextCSSProperties;
   containerOptions: ContainerProps;
   content: PreviewContent;
+  cssCode: CSSCodeContent;
+  viewMode: boolean;
 }
 
 export interface CSSHyphenValues {
@@ -36,5 +38,9 @@ export interface ContainerProps {
 }
 
 export interface PreviewContent {
+  rawContent: string
+}
+
+export interface CSSCodeContent {
   rawContent: string
 }

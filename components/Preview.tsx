@@ -8,7 +8,9 @@ import { useEffect } from 'react';
 const Preview: React.FC<ParagraphProps> = (props) => {
 //const [content, setContent] = useState(props.previewContent);
 const {...allStyles} = props.previewStyle;
-const content:String = props.content.rawContent;
+const content:string = props.content.rawContent;
+const cssCode:string = props.cssCode.rawContent;
+const viewMode:boolean = props.viewMode;
 const allContainerStyles = { 
   width:props.containerOptions.width + '%',
   height:props.containerOptions.height + '%'
@@ -20,7 +22,8 @@ useEffect( () => {
 
   return (
     <div className="preview-wrap" style={allContainerStyles}>
-      <p contentEditable="true" className="preview" style={allStyles}>{content}</p>
+      <pre className={viewMode? `css-code is--visible`:`css-code`}>{cssCode}</pre>
+      <p contentEditable="true" className={viewMode? `preview`:`preview is--visible`} style={allStyles}>{content}</p>
     </div>
   )
 }

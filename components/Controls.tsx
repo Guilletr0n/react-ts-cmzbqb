@@ -2,14 +2,14 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Preview from './Preview';
 import Foldable from './Foldable';
-import { TextCSSProperties } from '../interfaces/PreviewProps';
+import { CSSCodeContent, TextCSSProperties } from '../interfaces/PreviewProps';
 import Select from 'react-select';
 import CheckBox from './form_inputs/CheckBox';
 import RadioGroup from './RadioGroup';
 import InputNumber from './form_inputs/InputNumber';
 import SelectInput from './form_inputs/SelectInput';
 import TextInput from './form_inputs/TextInput';
-import { ContainerProps, PreviewContent } from '../interfaces/PreviewProps';
+import { ContainerProps, PreviewContent, CSSCodeContent} from '../interfaces/PreviewProps';
 import {previewRawContents} from '../content';
 
 interface SelectProps {
@@ -62,8 +62,6 @@ const previewOptions = {
   height: 500,
 };
 
-
-
 const CheckboxGroup: React.FC = () => {
   const [selected, setSelected] = useState<string | null>(null);
   const [fontSizeUnit, setFontSizeUnit] = useState<string>('px')
@@ -73,10 +71,9 @@ const CheckboxGroup: React.FC = () => {
     width: 100,
     height: 100,
   });
-  const [previewContent, setPreviewContent] = useState<PreviewContent>(
-    previewRawContents[0]
-  );
-
+  const [previewContent, setPreviewContent] = useState<PreviewContent>(previewRawContents[0]);
+  const [cssCode, setCssCode] = useState<CSSCodeContent>({rawContent:''});
+  const [cssCodeVisible, setCSSCodeVisible] = useState(false);
   const handleInput = (property: string, value: string) => {
     let newCSS: TextCSSProperties = { ...cssAll };
     newCSS[property] = value;
@@ -92,8 +89,7 @@ const CheckboxGroup: React.FC = () => {
     newCSS[property] = value;
     setCSSAll(newCSS);
   };
-  const handleSelect = (option) => {
-    console.log(value);
+  const handleContentSelect = (option) => {
     setPreviewContent(previewRawContents[option.value]);
   };
   const handleWidthRangeChange = (value) => {
@@ -106,7 +102,13 @@ const CheckboxGroup: React.FC = () => {
     setFontSizeUnit(value);
     handleInput('fontSize', cssAll['fontSize']);
   }
- 
+  const handleCssButton = () => {
+    let output:string = Object.entries(cssAll).map(
+      ([key, value]) => (`${key}:  ${value}`)
+    ).join(';\n');
+    setCssCode({rawContent: output});
+    setCSSCodeVisible(!cssCodeVisible);
+  }
   return (
     <div className="container">
       <div className="control-panel">
@@ -212,6 +214,7 @@ const CheckboxGroup: React.FC = () => {
             title=""
             options={[
               {
+                checked: false,
                 value: 'set auto columns width',
                 name: 'column-width',
                 onClick: () => handleInput('columnWidth', 'auto'),
@@ -499,12 +502,13 @@ const CheckboxGroup: React.FC = () => {
               },
               {
                 name: 'font-weight',
-                value: '700',
-                onClick: () => handleInput('font-weight', '700'),
+                value: '600',
+                onClick: () => handleInput('font-weight', '600'),
               },
             ]}
           />
         </Foldable>
+
         <Foldable title="Content" minHeight="160px">
           <Select
             options={[
@@ -523,7 +527,7 @@ const CheckboxGroup: React.FC = () => {
               })
             }}
             onChange={(e) => {
-              handleSelect(e);
+              handleContentSelect(e);
             }}
           />
         </Foldable>
@@ -534,8 +538,17 @@ const CheckboxGroup: React.FC = () => {
           previewStyle={cssAll}
           containerOptions={previewOptions}
           content={previewContent}
+          cssCode={cssCode}
+          viewMode={cssCodeVisible}
         />
       </div>
+      <div className="view-mode">
+        
+        <button
+          onClick={()=>{handleCssButton()}}
+          >{cssCodeVisible? 'Text':'CSS'}</button>
+      </div>
+
     </div>
   );
 };
