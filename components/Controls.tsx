@@ -9,8 +9,10 @@ import RadioGroup from './RadioGroup';
 import InputNumber from './form_inputs/InputNumber';
 import SelectInput from './form_inputs/SelectInput';
 import TextInput from './form_inputs/TextInput';
-import { ContainerProps, PreviewContent, CSSCodeContent} from '../interfaces/PreviewProps';
+import Toggle from './form_inputs/Toggle';
+import { ContainerProps, PreviewContent } from '../interfaces/PreviewProps';
 import {previewRawContents} from '../content';
+import {PropsDictionary} from '../interfaces/PropsDictionary';
 
 interface SelectProps {
   values: string[];
@@ -104,10 +106,20 @@ const CheckboxGroup: React.FC = () => {
   }
   const handleCssButton = () => {
     let output:string = Object.entries(cssAll).map(
-      ([key, value]) => (`${key}:  ${value}`)
+      ([key, value]) => (
+        `${PropsDictionary[key]}:  ${value}`
+      )
     ).join(';\n');
     setCssCode({rawContent: output});
     setCSSCodeVisible(!cssCodeVisible);
+  }
+  const handleToggle = (prop, value) => {
+    if(cssAll[prop] === value) {
+      handleInput(prop, 'unset');
+    } else {
+      handleInput(prop, value);
+    }
+    console.log(cssAll[prop])
   }
   return (
     <div className="container">
@@ -210,16 +222,10 @@ const CheckboxGroup: React.FC = () => {
             name="column-width"
             onInput={(value) => handleInput('columnWidth', parseInt(value))}
           />
-          <RadioGroup
-            title=""
-            options={[
-              {
-                checked: false,
-                value: 'set auto columns width',
-                name: 'column-width',
-                onClick: () => handleInput('columnWidth', 'auto'),
-              }
-            ]}
+          <Toggle 
+            name="auto-columns-width"
+            value={cssAll['columnWidth']==='auto'}
+            onToggle={(e) => handleToggle('columnWidth', 'auto')}
           />
         </Foldable>
 
@@ -332,28 +338,24 @@ const CheckboxGroup: React.FC = () => {
             title="Text-overflow"
             options={[
               {
-                value: 'auto',
+                value: 'ellipsis',
                 name: 'text-overflow',
                 checked: true,
-                onClick: () => handleInput('TextOverflow', 'auto'),
+                onClick: () => handleInput('textOverflow', 'ellipsis'),
               },
               {
-                value: 'manual',
+                value: 'clip',
                 name: 'text-overflow',
-                onClick: () => handleInput('TextOverflow', 'manual'),
+                onClick: () => handleInput('textOverflow', 'clip'),
               },
               {
-                value: 'none',
+                value: 'fade',
                 name: 'text-overflow',
-                onClick: () => handleInput('TextOverflow', 'none'),
+                onClick: () => handleInput('textOverflow', 'fade'),
               },
             ]}
           />
-          <InputNumber
-            value={cssAll['textOverflow']}
-            name="text-overflow"
-            onInput={(value) => handleInput('textOverflow', parseInt(value))}
-          />
+          
           <RadioGroup
             title="hyphens"
             options={[
@@ -546,7 +548,7 @@ const CheckboxGroup: React.FC = () => {
         
         <button
           onClick={()=>{handleCssButton()}}
-          >{cssCodeVisible? 'Text':'CSS'}</button>
+          >{cssCodeVisible? 'See Example':'Get CSS code'}</button>
       </div>
 
     </div>

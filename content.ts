@@ -1,7 +1,7 @@
 export const previewRawContents: PreviewContent[] = [
   {
     rawContent:
-      'This CSS Text generator is a quick and easy way to explore css properties that affect to text and fonts. Open the panels at left and change the values to preview how it affects to this text ',
+      'This CSS Text generator is a quick and easy way to explore css properties that affect to text and fonts. Open the panels at left and change the values to preview how it affects to this text. Click the button at the right to toggle display between text preview and css code.',
   },
   {
     rawContent:
